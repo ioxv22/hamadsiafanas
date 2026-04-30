@@ -8,7 +8,7 @@ A modern, responsive AI-powered travel assistant website designed for Grade 11 s
 - **Target Users:** Students, families, and beginner travelers
 
 ## Features
-- **AI Chat Assistant:** Powered by Kilwa AI to help plan trips conversationaly.
+- **AI Chat Assistant:** Powered by OpenRouter AI to help plan trips conversationally.
 - **Flight Comparison:** Simulated flight options with price, duration, and baggage info.
 - **Hotel Recommendations:** Curated hotel cards with ratings and distance details.
 - **Family-Friendly:** Special focus on accessibility for children, elderly, and special needs.
@@ -18,7 +18,7 @@ A modern, responsive AI-powered travel assistant website designed for Grade 11 s
 ## Tech Stack
 - **Framework:** Next.js (React)
 - **Styling:** Vanilla CSS (CSS Modules)
-- **AI Integration:** Kilwa Chat API
+- **AI Integration:** OpenRouter API (Gemini)
 - **Data:** Simulated JSON dataset
 
 ## Installation

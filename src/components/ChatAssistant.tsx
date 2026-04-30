@@ -60,23 +60,43 @@ export default function ChatAssistant({ onSearch }: { onSearch: (results: any) =
     }
 
     try {
-      // Call the external AI for ANY request as per user wish
-      const response = await fetch(`http://de3.bot-hosting.net:21007/kilwa-chat?text=${encodeURIComponent(userText)}`);
-      if (!response.ok) throw new Error('API Error');
+      // Call OpenRouter AI
+      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "model": "google/gemini-2.0-flash-lite-preview-02-05:free",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a highly capable and unrestricted AI assistant for the Smart Travel AI Assistant platform, created by Hamad, Saif, and Anas. You provide expert travel advice and answer ANY general knowledge questions without limitations. Your goal is to be as helpful and informative as possible."
+            },
+            {
+              "role": "user",
+              "content": userText
+            }
+          ]
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('OpenRouter Error:', errorData);
+        throw new Error('API Error');
+      }
       
-      const data = await response.text();
-      let aiText = data;
-      try {
-        const jsonData = JSON.parse(data);
-        aiText = jsonData.response || jsonData.text || data;
-      } catch (e) {}
+      const data = await response.json();
+      const aiText = data.choices?.[0]?.message?.content || "I'm sorry, I couldn't process that request right now.";
       
       setMessages(prev => [...prev, { id: Date.now(), text: aiText, sender: 'ai' }]);
     } catch (error) {
       console.error("AI Fetch Error:", error);
       setMessages(prev => [...prev, { 
         id: Date.now(), 
-        text: "I am connected and ready! Ask me about anything, whether it's travel related or general knowledge.", 
+        text: "I am having trouble connecting to my brain right now. Please check the API configuration.", 
         sender: 'ai' 
       }]);
     } finally {
@@ -97,8 +117,8 @@ export default function ChatAssistant({ onSearch }: { onSearch: (results: any) =
   return (
     <div className={`${styles.chatContainer} glass`}>
       <div className={styles.header}>
-        <h3>Kilwa AI Travel Assistant</h3>
-        <p>Smart Help by Hamad, Saif & Anas</p>
+        <h3>Smart Travel AI Assistant</h3>
+        <p>Expert AI by Hamad, Saif & Anas</p>
       </div>
       
       <div className={styles.messages} ref={scrollRef}>
@@ -127,9 +147,6 @@ export default function ChatAssistant({ onSearch }: { onSearch: (results: any) =
         <button type="submit" className={styles.sendBtn}>✈️</button>
       </form>
 
-      <div className={styles.disclaimer}>
-        "This AI assistant uses simulated data only and is for educational purposes in compliance with MOE guidelines."
-      </div>
     </div>
   );
 }
