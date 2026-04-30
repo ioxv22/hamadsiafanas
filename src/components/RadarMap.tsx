@@ -2,16 +2,6 @@
 
 import styles from './RadarMap.module.css';
 
-interface Flight {
-  icao24: string;
-  callsign: string;
-  origin_country: string;
-  longitude: number;
-  latitude: number;
-  velocity: number;
-  altitude: number;
-}
-
 export default function RadarMap() {
   return (
     <div className={`${styles.radarContainer} glass animate-fade-in`}>
