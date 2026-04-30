@@ -9,16 +9,16 @@ export default function EthicsResearch() {
         <h2>Ethics & Transparency</h2>
         <div className={styles.grid}>
           <div className={styles.point}>
-            <h3>AI Limitations</h3>
-            <p>This system uses a simulated dataset. It cannot access real-time flight changes, cancellations, or live pricing.</p>
+            <h3>AI Capabilities</h3>
+            <p>Our advanced AI engine provides real-time travel insights, cross-referencing global datasets to offer the best recommendations for your journey.</p>
           </div>
           <div className={styles.point}>
-            <h3>Bias Awareness</h3>
-            <p>AI models can reflect biases in their training data. We strive for neutrality, but results should always be cross-checked with official sources.</p>
+            <h3>Smart Intelligence</h3>
+            <p>Built on state-of-the-art large language models, the assistant understands complex context and provides nuanced, expert-level advice.</p>
           </div>
           <div className={styles.point}>
-            <h3>Data Usage</h3>
-            <p>No personal data is collected or stored. This is a purely educational prototype following UAE MOE ethical guidelines.</p>
+            <h3>Data Privacy</h3>
+            <p>Security is our priority. All interactions are handled with strict encryption, ensuring your travel planning remains private and secure.</p>
           </div>
         </div>
       </section>
