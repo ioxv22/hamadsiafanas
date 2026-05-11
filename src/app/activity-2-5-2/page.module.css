@@ -1,0 +1,332 @@
+.main {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+  0% { transform: translate(0, 0); opacity: 0; }
+  20% { opacity: 0.2; }
+  80% { opacity: 0.2; }
+  100% { transform: translate(100px, -100px); opacity: 0; }
+}
+
+/* Hero */
+.heroSection {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: left;
+}
+
+.heroBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  filter: brightness(0.7);
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, var(--bg-dark) 30%, transparent 100%);
+  z-index: -1;
+}
+
+.teamBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Overview Card */
+.overviewCard {
+  padding: 4rem;
+}
+
+.overviewHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.overviewList ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.overviewList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.overviewList li span {
+  color: var(--text-main);
+}
+
+.overviewList li svg {
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.overviewVisual {
+  display: flex;
+  justify-content: center;
+}
+
+.visualCircle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.visualPulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  opacity: 0.3;
+  animation: pulse 3s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Workflow */
+.workflowWrapper {
+  margin-top: 4rem;
+}
+
+.workflowPath {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 2rem;
+}
+
+.workflowNode {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.nodeCircle {
+  width: 60px;
+  height: 60px;
+  background: var(--bg-navy);
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.pathLine {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--primary), transparent);
+  z-index: -1;
+}
+
+.aiPoint {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+.aiPoint:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--primary);
+}
+
+.aiPoint svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* Inspiration Section */
+.inspirationCard {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px);
+  padding: 2.5rem;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  transition: all 0.4s ease;
+}
+
+.inspirationCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+
+.inspSource {
+  font-family: var(--font-outfit);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.combinedBanner {
+  margin-top: 4rem;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(192, 132, 252, 0.1));
+  border-radius: 30px;
+  border: 1px solid var(--primary);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.bannerIcon {
+  color: var(--primary);
+  width: 48px;
+  height: 48px;
+}
+
+.combinedBanner p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: var(--font-outfit);
+  color: var(--text-main);
+}
+
+/* Summary Card */
+.summaryCard {
+  position: relative;
+  padding: 5rem;
+  background: var(--bg-navy);
+  border-radius: 40px;
+  text-align: center;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+
+.summaryGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.summaryCard p {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+  font-family: var(--font-outfit);
+  color: var(--text-main);
+  position: relative;
+  z-index: 2;
+}
+
+/* Footer */
+.footer {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #000;
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .overviewGrid {
+    grid-template-columns: 1fr;
+  }
+  .overviewVisual {
+    display: none;
+  }
+  .workflowPath {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .pathLine {
+    display: none;
+  }
+  .summaryCard {
+    padding: 3rem 1.5rem;
+  }
+  .summaryCard p {
+    font-size: 1.25rem;
+  }
+}

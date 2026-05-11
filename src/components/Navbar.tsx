@@ -1,31 +1,24 @@
 'use client';
 
-import { useTheme } from '@/context/ThemeContext';
-import { useAuth } from '@/context/AuthContext';
+import { Plane } from 'lucide-react';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme();
-  const { user, logout } = useAuth();
-
   return (
-    <nav className={`${styles.navbar} glass`}>
+    <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <span className={styles.icon}>✈️</span>
-        <span className={styles.name}>Smart Travel Platform</span>
+        <div className={styles.iconBox}>
+          <Plane size={24} />
+        </div>
+        <span className={styles.name}>Smart Travel AI</span>
       </div>
       <div className={styles.links}>
-        {user ? (
-          <div className={styles.userSection}>
-            <span className={styles.userName}>{user.name}</span>
-            <button onClick={logout} className={styles.navBtn}>Logout</button>
-          </div>
-        ) : (
-          <span className={styles.projectInfo}>Hamad, Saif, Anas</span>
-        )}
-        <button className="theme-toggle" onClick={toggleTheme}>
-          {theme === 'light' ? '🌙' : '☀️'}
-        </button>
+        <a href="/" className={styles.navLink}>Home</a>
+        <a href="/activity-2-5-2" className={styles.navLink}>Activity 2.5.2</a>
+        <a href="/stage-4" className={styles.navLink}>Stage 4</a>
+        <a href="/stage-3" className={styles.navLink}>Stage 3</a>
+        <span className={styles.projectInfo}>Hamad • Saif • Anas</span>
+        <a href="#demo" className={styles.navBtn}>Launch Demo</a>
       </div>
     </nav>
   );
