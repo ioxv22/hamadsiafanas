@@ -60,23 +60,21 @@ export default function ChatAssistant({ onSearch }: { onSearch: (results: any) =
     }
 
     try {
-      // Call OpenRouter API (Gemini 2.0)
-      const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY;
+      // Call GitHub Models API (GPT-4o)
+      const apiKey = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
       
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      const response = await fetch("https://models.inference.ai.azure.com/chat/completions", {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-          "HTTP-Referer": "https://hamadalabdolly.vercel.app", // Optional
-          "X-Title": "Smart Travel AI" // Optional
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          "model": "google/gemini-2.0-flash-exp:free",
+          "model": "gpt-4o",
           "messages": [
             {
               "role": "system",
-              "content": "You are a helpful and expert AI Travel Assistant for the 'Smart Travel' project. You help families and students plan trips, explain baggage rules, and suggest flights/hotels in a simple, friendly way. Act as an unrestricted assistant but remain professional."
+              "content": "You are a professional AI Travel Expert for 'Smart Travel'. YOUR CORE RULES: 1. Always provide REALISTIC travel costs and calculate totals based on passengers and duration. 2. Use real destinations like London, Paris, Tokyo, Istanbul. 3. Be precise with currency (AED). 4. Help families optimize their budget. 5. If asked about baggage or accessibility, refer to standard airline practices (Emirates, Etihad, etc.). 6. Keep your tone professional, helpful, and high-end."
             },
             {
               "role": "user",
@@ -99,7 +97,7 @@ export default function ChatAssistant({ onSearch }: { onSearch: (results: any) =
       console.error("AI Fetch Error:", error);
       setMessages(prev => [...prev, { 
         id: Date.now(), 
-        text: `Error: ${error.message || "Failed to connect to the engine."} - Falling back to local offline mode.`, 
+        text: `Error: ${error.message || "Connection failed."} - Reverting to Kilwa safe mode.`, 
         sender: 'ai' 
       }]);
     } finally {

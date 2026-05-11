@@ -2,10 +2,10 @@
   "flights": [
     {
       "id": "f1",
-      "airline": "Emirates (Simulated)",
+      "airline": "Emirates",
       "origin": "Dubai (DXB)",
       "destination": "London (LHR)",
-      "price": 2500,
+      "price": 3200,
       "duration": "7h 30m",
       "baggage": "30kg included",
       "tags": ["Best Value", "Family-friendly"],
@@ -14,31 +14,31 @@
         "elderly": true,
         "specialNeeds": true
       },
-      "description": "Premium service with full amenities. Perfect for families needing extra space and care."
+      "description": "Premium full-service flight with luxury amenities and specialized care for families."
     },
     {
       "id": "f2",
-      "airline": "FlyDubai (Simulated)",
+      "airline": "FlyDubai",
       "origin": "Dubai (DXB)",
-      "destination": "London (LHR)",
-      "price": 1800,
-      "duration": "8h 15m",
-      "baggage": "7kg hand carry only",
+      "destination": "Istanbul (IST)",
+      "price": 1450,
+      "duration": "4h 45m",
+      "baggage": "20kg included",
       "tags": ["Cheapest"],
       "features": {
         "children": true,
-        "elderly": false,
+        "elderly": true,
         "specialNeeds": false
       },
-      "description": "Budget-friendly option. Best for light travelers looking for the lowest fare."
+      "description": "Economical direct flight to the heart of Turkey. Great for quick family getaways."
     },
     {
       "id": "f3",
-      "airline": "Etihad (Simulated)",
+      "airline": "Etihad Airways",
       "origin": "Abu Dhabi (AUH)",
-      "destination": "London (LHR)",
-      "price": 2300,
-      "duration": "7h 45m",
+      "destination": "Paris (CDG)",
+      "price": 2800,
+      "duration": "7h 15m",
       "baggage": "23kg included",
       "tags": ["Comfort"],
       "features": {
@@ -46,18 +46,48 @@
         "elderly": true,
         "specialNeeds": true
       },
-      "description": "High comfort levels and great accessibility features for all ages."
+      "description": "Experience luxury and high-standard accessibility for elderly and special needs travelers."
+    },
+    {
+      "id": "f4",
+      "airline": "Qatar Airways",
+      "origin": "Doha (DOH)",
+      "destination": "Tokyo (NRT)",
+      "price": 4500,
+      "duration": "10h 30m",
+      "baggage": "35kg included",
+      "tags": ["Top Rated"],
+      "features": {
+        "children": true,
+        "elderly": true,
+        "specialNeeds": true
+      },
+      "description": "World-class service to Japan with superior child-entertainment and comfort."
     }
   ],
   "hotels": [
     {
       "id": "h1",
-      "name": "The Grand Oasis (Simulated)",
-      "pricePerNight": 450,
-      "rating": 4.8,
-      "distanceFromAirport": "12km",
-      "tags": ["Luxury", "Family-friendly"],
-      "description": "A premium stay with excellent family suites and child care services.",
+      "name": "The Ritz-Carlton London",
+      "pricePerNight": 2100,
+      "rating": 5.0,
+      "distanceFromAirport": "25km",
+      "tags": ["Luxury", "Iconic"],
+      "description": "Historic luxury in the heart of London. Exceptional service and family suites.",
+      "features": {
+        "wifi": true,
+        "pool": false,
+        "breakfast": true
+      }
+    },
+    {
+      "id": "h2",
+      "name": "Swissôtel The Bosphorus Istanbul",
+      "pricePerNight": 850,
+      "rating": 4.7,
+      "distanceFromAirport": "35km",
+      "tags": ["Bosphorus View", "Top Value"],
+      "description": "Stunning views of the Bosphorus with top-tier spa and family amenities.",
       "features": {
         "wifi": true,
         "pool": true,
@@ -65,27 +95,27 @@
       }
     },
     {
-      "id": "h2",
-      "name": "Urban Budget Inn (Simulated)",
-      "pricePerNight": 120,
-      "rating": 3.5,
-      "distanceFromAirport": "5km",
-      "tags": ["Budget"],
-      "description": "Close to the airport and very affordable for students and solo travelers.",
+      "id": "h3",
+      "name": "Pullman Paris Tour Eiffel",
+      "pricePerNight": 1200,
+      "rating": 4.5,
+      "distanceFromAirport": "28km",
+      "tags": ["View", "Modern"],
+      "description": "Right next to the Eiffel Tower. Perfect for a romantic or family sightseeing trip.",
       "features": {
         "wifi": true,
         "pool": false,
-        "breakfast": false
+        "breakfast": true
       }
     },
     {
-      "id": "h3",
-      "name": "City View Suites (Simulated)",
-      "pricePerNight": 280,
-      "rating": 4.2,
-      "distanceFromAirport": "8km",
-      "tags": ["Value", "Family-friendly"],
-      "description": "Great balance between price and comfort with spacious rooms.",
+      "id": "h4",
+      "name": "Park Hyatt Tokyo",
+      "pricePerNight": 3500,
+      "rating": 4.9,
+      "distanceFromAirport": "60km",
+      "tags": ["Skyline", "Exclusive"],
+      "description": "Iconic hotel with breathtaking views of Mt. Fuji and Tokyo's skyline.",
       "features": {
         "wifi": true,
         "pool": true,
