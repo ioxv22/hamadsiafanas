@@ -16,7 +16,8 @@ import {
   Users,
   CheckCircle2,
   ShieldCheck,
-  ChevronRight
+  ChevronRight,
+  Zap
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import styles from './page.module.css';

@@ -15,7 +15,8 @@ import {
   Layout,
   MousePointer2,
   ListFilter,
-  CheckCircle2
+  CheckCircle2,
+  Zap
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import styles from './page.module.css';
