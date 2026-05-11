@@ -1,137 +1,238 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding-bottom: 2rem;
+  padding: 1rem;
+}
+
+.section {
+  margin-bottom: 3rem;
 }
 
 .sectionTitle {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  border-left: 4px solid var(--primary);
-  padding-left: 1rem;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  font-family: var(--font-outfit);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
 .card {
   position: relative;
   overflow: hidden;
-}
-
-.cheapest {
-  border: 2px solid var(--primary);
-}
-
-.ribbon {
-  position: absolute;
-  top: 10px;
-  right: -30px;
-  background: var(--primary);
-  color: white;
-  padding: 5px 35px;
-  transform: rotate(45deg);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.packageCard {
-  border: 2px solid var(--accent);
-  padding: 1.5rem;
-  position: relative;
-}
-
-.packageBadge {
-  position: absolute;
-  top: -12px;
-  left: 1rem;
-  background: var(--accent);
-  color: white;
-  padding: 2px 10px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  font-weight: 700;
-}
-
-.packageHeader {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.totalPrice {
-  color: var(--accent);
-  font-weight: 800;
-  font-size: 1.2rem;
-}
-
-.packageDetails {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-bottom: 1rem;
-}
-
-.packageBreakdown {
-  display: flex;
+  flex-direction: column;
   gap: 1rem;
-  font-size: 0.8rem;
-  opacity: 0.6;
+  padding: 2rem;
 }
 
 .cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1rem;
+  gap: 1rem;
 }
 
 .airline, .hotelName {
   font-weight: 700;
+  font-family: var(--font-outfit);
   font-size: 1.1rem;
 }
 
 .price {
   color: var(--primary);
   font-weight: 800;
+  font-size: 1.25rem;
 }
 
 .route {
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+  color: var(--text-main);
 }
 
 .details {
   display: flex;
-  gap: 1rem;
-  font-size: 0.85rem;
-  opacity: 0.8;
-  margin-bottom: 1rem;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
 .tags {
-  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* View Details Button - Premium Style */
+.viewDetailsBtn {
+  margin-top: auto;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #000;
+  font-weight: 700;
+  font-family: var(--font-outfit);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+  text-align: center;
+}
+
+.viewDetailsBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.6);
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.closeBtn:hover {
+  color: var(--text-main);
+}
+
+.modalHeader {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.infoSection h4 {
+  font-size: 0.9rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.featureGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.priceValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.policyNote {
   font-size: 0.85rem;
-  opacity: 0.7;
+  color: var(--text-muted);
+}
+
+.aiInsights {
+  background: rgba(56, 189, 248, 0.05);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.aiLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Packages */
+.packageCard {
+  border: 1px solid var(--secondary);
+  padding: 2rem;
+}
+
+.packageBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--secondary);
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.totalPrice {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 1.5rem;
 }
 
 .emptyState {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 400px;
   text-align: center;
-  opacity: 0.5;
+  padding: 4rem 2rem;
 }
 
 .emptyIcon {
@@ -139,8 +240,8 @@
   margin-bottom: 1rem;
 }
 
-@media (max-width: 768px) {
-  .grid {
+@media (max-width: 600px) {
+  .infoGrid {
     grid-template-columns: 1fr;
   }
 }
