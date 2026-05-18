@@ -37,8 +37,8 @@ export default function ChatAssistant({ onSearch }: { onSearch: (results: any) =
     const hasTravelKeywords = travelKeywords.some(kw => lower.includes(kw));
 
     if (hasTravelKeywords) {
-      // Dynamic extraction of destination (English & Arabic)
-      const destinationMatch = lower.match(/(?:to|in|visit|إلى|الي|في|لـ|نحو)\s+([a-zA-Z\u0600-\u06FF]+)/);
+      // Dynamic extraction of destination (English & Arabic, supports up to 3 words like 'Saudi Arabia')
+      const destinationMatch = lower.match(/(?:to|in|visit|إلى|الي|في|لـ|نحو)\s+([a-zA-Z\u0600-\u06FF]+(?:\s+[a-zA-Z\u0600-\u06FF]+){0,2})/);
       let destinationCode = 'Anywhere';
       
       if (destinationMatch && destinationMatch[1]) {

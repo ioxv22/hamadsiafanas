@@ -35,7 +35,7 @@ export default function FlightsPage() {
       <Navbar />
       <div className="container" style={{ paddingTop: '8rem' }}>
         <h2>Global Flight Search Engine</h2>
-        <form onSubmit={handleSearch} className="glass-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr auto', gap: '1rem', alignItems: 'end', marginBottom: '3rem' }}>
+        <form onSubmit={handleSearch} className="glass-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr auto', gap: '1rem', alignItems: 'end', marginBottom: '1.5rem' }}>
           <div>
             <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>From</label>
             <input type="text" placeholder="Origin City/Airport" value={fromLocation} onChange={(e) => setFromLocation(e.target.value)} required style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.2)', color: 'white' }} />
@@ -56,10 +56,22 @@ export default function FlightsPage() {
               <option value="first">First Class</option>
             </select>
           </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <label style={{ color: 'var(--text-muted)' }}>Passengers</label>
+            <input type="number" defaultValue={1} min={1} style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.2)', color: 'white' }} />
+          </div>
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? 'Searching...' : 'Search Flights'}
           </button>
         </form>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem', padding: '1rem', background: 'rgba(0,255,170,0.1)', border: '1px solid var(--primary)', borderRadius: '8px' }}>
+          <div style={{ fontSize: '2rem' }}>👨‍👩‍👧‍👦</div>
+          <div>
+            <h4 style={{ color: 'var(--primary)', margin: 0 }}>Year of Family 2026 Mode</h4>
+            <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)' }}>Displaying family-friendly seating, extra baggage options, and child/elderly assistance.</p>
+          </div>
+        </div>
 
         {loading && (
           <div style={{ textAlign: 'center', padding: '3rem' }}>
