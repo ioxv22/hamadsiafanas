@@ -1,6 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import ChatAssistant from '@/components/ChatAssistant';
+import ResultsView from '@/components/ResultsView';
 import { 
   Plane, 
   Hotel,
@@ -29,6 +31,8 @@ import Navbar from '@/components/Navbar';
 import styles from './page.module.css';
 
 export default function Home() {
+  const [results, setResults] = useState({ flights: [], hotels: [], packages: [] });
+
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -178,6 +182,31 @@ export default function Home() {
                 <div className={styles.teamAvatar} style={{ backgroundImage: 'linear-gradient(135deg, var(--accent) 0%, var(--bg-navy) 100%)' }}>A</div>
                 <h3>Anas</h3>
                 <p className={styles.role}>Presentation & Design</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4.5. Live AI Assistant */}
+      <section id="demo">
+        <div className="container">
+          <div className="reveal">
+            <h2>Live AI Travel Assistant</h2>
+            <p style={{ textAlign: 'center', marginBottom: '3rem', color: 'var(--text-muted)' }}>
+              Ask our DeepSeek AI to plan your perfect trip. (Try: "Trip to Japan under $1200")
+            </p>
+            <div style={{ display: 'flex', gap: '2rem', minHeight: '500px', flexDirection: 'row', flexWrap: 'wrap' }}>
+              <div style={{ flex: '1', minWidth: '300px' }}>
+                <ChatAssistant onSearch={setResults} />
+              </div>
+              <div style={{ flex: '1.5', minWidth: '300px', display: 'flex', flexDirection: 'column' }}>
+                <ResultsView results={results} />
+                {(!results.flights || results.flights.length === 0) && (!results.hotels || results.hotels.length === 0) && (!results.packages || results.packages.length === 0) && (
+                  <div className="glass-card" style={{ height: '100%', minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', textAlign: 'center' }}>
+                    <p>Start chatting with the AI to see interactive flight and hotel results here!</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
