@@ -186,6 +186,52 @@ const slides = [
   {
     id: 9,
     content: (
+      <div className={styles.flexLayout}>
+        <div>
+          <h2 className={styles.slideTitle} style={{ fontSize: '2.2rem' }}>Ethical AI & Limitations</h2>
+          <p style={{ fontSize: '1.2rem', color: 'var(--text-main)', marginBottom: '1.5rem' }}>Responsible AI Practices & Data Guidelines:</p>
+          <ul className={styles.bulletList} style={{ fontSize: '1.1rem' }}>
+            <li><strong>Simulated Data:</strong> All data used is strictly simulated. No real bookings or personal data are processed.</li>
+            <li><strong>Data Bias:</strong> We ensure diverse destination data to prevent algorithmic bias in recommendations.</li>
+            <li><strong>Transparency:</strong> Users are always informed they are interacting with an AI prototype.</li>
+            <li><strong>User Trust:</strong> Pricing structures are transparent, solving the issue of unclear airline fees.</li>
+          </ul>
+        </div>
+        <div className="glass-card" style={{ borderLeft: '4px solid #ff4444', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <h3 style={{ color: '#ff4444', marginBottom: '1rem' }}>MOE Compliance</h3>
+          <p style={{ fontStyle: 'italic', fontSize: '1.1rem', lineHeight: '1.6' }}>
+            “This AI assistant uses simulated data only and is for educational purposes in compliance with MOE guidelines.”
+          </p>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 10,
+    content: (
+      <div className={styles.flexLayout}>
+        <div>
+          <div className="badge animate-pulse-glow" style={{ marginBottom: '1rem', background: 'rgba(0,255,170,0.2)', color: 'var(--primary)', borderColor: 'var(--primary)' }}>Year of Family 2026</div>
+          <h2 className={styles.slideTitle} style={{ fontSize: '2.5rem' }}>Family-Centric Design</h2>
+          <p style={{ fontSize: '1.2rem', color: 'var(--text-main)', marginBottom: '1.5rem' }}>Supporting the UAE's vision for 2026:</p>
+          <ul className={styles.bulletList}>
+            <li>Clear price comparison for multiple passengers.</li>
+            <li>Baggage allowances explained in simple, non-technical language.</li>
+            <li>Special considerations for children and elderly family members.</li>
+            <li>Inclusive design for people of determination.</li>
+          </ul>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+          <div style={{ fontSize: '6rem', marginBottom: '1rem' }}>👨‍👩‍👧‍👦</div>
+          <h3 style={{ color: 'var(--primary)' }}>Smart Tourism</h3>
+          <p style={{ color: 'var(--text-muted)' }}>Focusing on Future Skills & Wellbeing</p>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 11,
+    content: (
       <div style={{ width: '100%', textAlign: 'center' }}>
         <h2 className={styles.slideTitle} style={{ fontSize: '2.5rem', marginBottom: '4rem' }}>The Team</h2>
         <div className={styles.gridList} style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
@@ -206,7 +252,7 @@ const slides = [
     )
   },
   {
-    id: 10,
+    id: 12,
     content: (
       <div style={{ textAlign: 'center' }}>
         <div className="badge animate-pulse-glow" style={{ marginBottom: '2rem' }}>Conclusion</div>
@@ -215,7 +261,10 @@ const slides = [
           Smart Travel AI Assistant combines travel planning, AI support, budgeting and organization into one intelligent platform.
         </p>
         <p style={{ color: 'var(--text-muted)' }}>Presented by:</p>
-        <h3 style={{ fontSize: '1.8rem', color: 'var(--primary)', marginTop: '1rem' }}>Hamad • Saif • Anas</h3>
+        <h3 style={{ fontSize: '1.8rem', color: 'var(--primary)', margin: '1rem 0' }}>Hamad • Saif • Anas</h3>
+        <p style={{ fontStyle: 'italic', fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '2rem' }}>
+          “This AI assistant uses simulated data only and is for educational purposes in compliance with MOE guidelines.”
+        </p>
       </div>
     )
   }

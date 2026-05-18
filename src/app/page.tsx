@@ -260,7 +260,10 @@ export default function Home() {
               <p>Hamad • Saif • Anas</p>
             </div>
           </div>
-          <div className={styles.footerBottom}>
+          <div className={styles.footerBottom} style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem', marginTop: '2rem', textAlign: 'center' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', fontStyle: 'italic', maxWidth: '800px', margin: '0 auto 1rem auto' }}>
+              “This AI assistant uses simulated data only and is for educational purposes in compliance with MOE guidelines.”
+            </p>
             <p>© {new Date().getFullYear()} All Rights Reserved.</p>
           </div>
         </div>
