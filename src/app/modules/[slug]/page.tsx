@@ -10,6 +10,35 @@ export default function ModulePage() {
   const slug = pathname.split('/').pop()?.replace(/-/g, ' ') || 'Module';
   const title = slug.charAt(0).toUpperCase() + slug.slice(1);
 
+  const [flightCost, setFlightCost] = useState('');
+  const [hotelCost, setHotelCost] = useState('');
+  const [totalBudget, setTotalBudget] = useState<number | null>(null);
+
+  const handleCalculateBudget = () => {
+    const f = parseFloat(flightCost) || 0;
+    const h = parseFloat(hotelCost) || 0;
+    setTotalBudget(f + h);
+  };
+
+  const [events, setEvents] = useState([
+    { time: '10:00 AM', desc: 'Visit Louvre Museum' },
+    { time: '02:30 PM', desc: 'Lunch at Eiffel Tower' }
+  ]);
+  const [journalSaved, setJournalSaved] = useState(false);
+  const [currencyAmount, setCurrencyAmount] = useState(100);
+
+  const handleAddEvent = () => {
+    const newEvent = prompt('Enter new event (e.g. "08:00 PM - Dinner"):');
+    if (newEvent) {
+      const parts = newEvent.split('-');
+      if (parts.length >= 2) {
+        setEvents([...events, { time: parts[0].trim(), desc: parts[1].trim() }]);
+      } else {
+        setEvents([...events, { time: '00:00', desc: newEvent }]);
+      }
+    }
+  };
+
   const renderContent = () => {
     switch(slug.toLowerCase().replace(/ /g, '-')) {
       case 'budget-system':
@@ -17,33 +46,37 @@ export default function ModulePage() {
           <div className="glass-card">
             <h3>💸 Trip Expenses Tracker</h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
-              <div><label>Flight Budget</label><input type="number" placeholder="$1000" style={{ width: '100%', padding: '0.5rem', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--glass-border)', color: 'white' }} /></div>
-              <div><label>Hotel Budget</label><input type="number" placeholder="$500" style={{ width: '100%', padding: '0.5rem', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--glass-border)', color: 'white' }} /></div>
+              <div><label>Flight Budget</label><input type="number" placeholder="$1000" value={flightCost} onChange={e => setFlightCost(e.target.value)} style={{ width: '100%', padding: '0.5rem', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--glass-border)', color: 'white' }} /></div>
+              <div><label>Hotel Budget</label><input type="number" placeholder="$500" value={hotelCost} onChange={e => setHotelCost(e.target.value)} style={{ width: '100%', padding: '0.5rem', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--glass-border)', color: 'white' }} /></div>
             </div>
-            <button className="btn btn-primary" style={{ marginTop: '1.5rem', width: '100%' }}>Calculate Total</button>
+            <button onClick={handleCalculateBudget} className="btn btn-primary" style={{ marginTop: '1.5rem', width: '100%' }}>Calculate Total</button>
+            {totalBudget !== null && (
+              <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'rgba(0,255,170,0.1)', borderRadius: '8px', border: '1px solid var(--primary)', textAlign: 'center' }}>
+                <div style={{ fontSize: '1.2rem' }}>Total Trip Cost</div>
+                <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--primary)' }}>${totalBudget}</div>
+              </div>
+            )}
           </div>
         );
       case 'travel-events':
         return (
           <div className="glass-card">
             <h3>📅 Interactive Calendar</h3>
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', borderLeft: '4px solid var(--primary)', paddingLeft: '1rem' }}>
-              <div><strong>10:00 AM</strong></div>
-              <div>Visit Louvre Museum</div>
-            </div>
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', borderLeft: '4px solid var(--secondary)', paddingLeft: '1rem' }}>
-              <div><strong>02:30 PM</strong></div>
-              <div>Lunch at Eiffel Tower</div>
-            </div>
-            <button className="btn btn-outline" style={{ marginTop: '1.5rem', width: '100%' }}>+ Add New Event</button>
+            {events.map((ev, i) => (
+              <div key={i} style={{ display: 'flex', gap: '1rem', marginTop: '1rem', borderLeft: `4px solid ${i % 2 === 0 ? 'var(--primary)' : 'var(--secondary)'}`, paddingLeft: '1rem' }}>
+                <div><strong>{ev.time}</strong></div>
+                <div>{ev.desc}</div>
+              </div>
+            ))}
+            <button onClick={handleAddEvent} className="btn btn-outline" style={{ marginTop: '1.5rem', width: '100%' }}>+ Add New Event</button>
           </div>
         );
       case 'journal-feature':
         return (
           <div className="glass-card">
             <h3>📖 My Travel Journal</h3>
-            <textarea placeholder="Write about your day in Paris..." rows={6} style={{ width: '100%', padding: '1rem', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--glass-border)', color: 'white', marginTop: '1rem', borderRadius: '8px' }}></textarea>
-            <button className="btn btn-primary" style={{ marginTop: '1rem' }}>Save Entry</button>
+            <textarea placeholder="Write about your day in Paris..." rows={6} onChange={() => setJournalSaved(false)} style={{ width: '100%', padding: '1rem', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--glass-border)', color: 'white', marginTop: '1rem', borderRadius: '8px' }}></textarea>
+            <button onClick={() => setJournalSaved(true)} className="btn btn-primary" style={{ marginTop: '1rem', width: '100%' }}>{journalSaved ? '✔ Saved Successfully' : 'Save Entry'}</button>
           </div>
         );
       case 'safety-center':
@@ -65,10 +98,10 @@ export default function ModulePage() {
           <div className="glass-card">
             <h3>💱 Live Exchange Rates</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginTop: '1.5rem' }}>
-              <input type="number" defaultValue={100} style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--glass-border)', color: 'white', width: '100px' }} />
+              <input type="number" value={currencyAmount} onChange={e => setCurrencyAmount(Number(e.target.value))} style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--glass-border)', color: 'white', width: '100px', borderRadius: '8px' }} />
               <span>AED</span>
               <span>=</span>
-              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--primary)' }}>27.23</span>
+              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--primary)' }}>{(currencyAmount * 0.27).toFixed(2)}</span>
               <span>USD</span>
             </div>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '1rem' }}>Updated 2 mins ago via AI Market Analysis</p>
