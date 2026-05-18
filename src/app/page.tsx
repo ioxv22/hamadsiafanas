@@ -30,7 +30,9 @@ import {
   Ticket,
   FileText,
   Camera,
-  Map
+  Map,
+  Bot,
+  BookOpen
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import styles from './page.module.css';
@@ -107,25 +109,47 @@ export default function Home() {
       <section id="activities">
         <div className="container">
           <div className="reveal">
+            <div style={{ marginBottom: '3rem' }}>
+              <div className="glass-card" style={{ background: 'rgba(0, 255, 170, 0.05)', border: '1px solid var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '2rem', flexWrap: 'wrap', gap: '2rem' }}>
+                <div style={{ flex: '1 1 500px' }}>
+                  <div className="badge animate-pulse-glow" style={{ marginBottom: '1rem', background: 'rgba(0, 255, 170, 0.2)', color: 'var(--primary)', borderColor: 'var(--primary)' }}>Special Feature</div>
+                  <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--primary)' }}>Year of Family 2026 👨‍👩‍👧‍👦</h3>
+                  <p style={{ color: 'var(--text-main)', fontSize: '1.1rem', lineHeight: '1.6' }}>
+                    In support of the UAE's vision, our platform includes dedicated family modes. Experience clear price comparisons for multiple passengers, simplified baggage policies, and special considerations for children, elderly, and people of determination.
+                  </p>
+                </div>
+                <div>
+                  <a href="/flights" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1.1rem' }}>Explore Family Flights</a>
+                </div>
+              </div>
+            </div>
             <h2>Activities / Modules</h2>
             <div className="grid-3">
-              <a href="/flights" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <a href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="glass-card" style={{ animationDelay: `0s`, cursor: 'pointer' }}>
+                  <div className="icon-box"><Bot /></div>
+                  <h3>AI Travel Assistant</h3>
+                  <p>Chat with our smart AI to plan your perfect trip.</p>
+                </div>
+              </a>
+              <a href="/flights" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <div className="glass-card" style={{ animationDelay: `0.1s`, cursor: 'pointer' }}>
                   <div className="icon-box"><PlaneTakeoff /></div>
                   <h3>Smart Planning</h3>
                   <p>AI-assisted comprehensive travel planning system.</p>
                 </div>
               </a>
               {[
-                { icon: <Wallet />, title: 'Budget System', desc: 'Track and organize full trip expenses.', link: 'budget-system', delay: 0.1 },
-                { icon: <Map />, title: 'Travel Events', desc: 'Discover and schedule activities.', link: 'travel-events', delay: 0.2 },
-                { icon: <PenTool />, title: 'Journal Feature', desc: 'Write and store travel memories.', link: 'journal-feature', delay: 0.3 },
-                { icon: <Shield />, title: 'Safety Center', desc: 'Access travel safety information.', link: 'safety-center', delay: 0.4 },
-                { icon: <DollarSign />, title: 'Currency Module', desc: 'Real-time currency exchange rates.', link: 'currency-module', delay: 0.5 },
-                { icon: <Ticket />, title: 'Ticket Manager', desc: 'Store and manage travel tickets.', link: 'ticket-manager', delay: 0.6 },
-                { icon: <FileText />, title: 'Documents Storage', desc: 'Securely store passports & visas.', link: 'documents-storage', delay: 0.7 },
-                { icon: <Globe />, title: 'Country Insights', desc: 'Detailed destination guides.', link: 'country-insights', delay: 0.8 },
-                { icon: <Camera />, title: 'Albums', desc: 'Organize your travel photos.', link: 'albums', delay: 0.9 },
+                { icon: <Wallet />, title: 'Budget Planning', desc: 'Track and organize full trip expenses.', link: 'budget-planning', delay: 0.2 },
+                { icon: <Map />, title: 'Trip Events', desc: 'Discover and schedule activities.', link: 'trip-events', delay: 0.3 },
+                { icon: <PenTool />, title: 'Journal System', desc: 'Write and store travel memories.', link: 'journal-system', delay: 0.4 },
+                { icon: <BookOpen />, title: 'Travel Stories', desc: 'Read community travel experiences.', link: 'travel-stories', delay: 0.5 },
+                { icon: <Camera />, title: 'Travel Albums', desc: 'Organize your travel photos.', link: 'travel-albums', delay: 0.6 },
+                { icon: <Shield />, title: 'Safety Information', desc: 'Access travel safety information.', link: 'safety-information', delay: 0.7 },
+                { icon: <DollarSign />, title: 'Currency Support', desc: 'Real-time currency exchange rates.', link: 'currency-support', delay: 0.8 },
+                { icon: <Ticket />, title: 'Ticket Storage', desc: 'Store and manage travel tickets.', link: 'ticket-storage', delay: 0.9 },
+                { icon: <FileText />, title: 'Document Management', desc: 'Securely store passports & visas.', link: 'document-management', delay: 1.0 },
+                { icon: <Globe />, title: 'Country Information', desc: 'Detailed destination guides.', link: 'country-information', delay: 1.1 },
               ].map((activity, i) => (
                 <a key={i} href={`/modules/${activity.link}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <div className="glass-card" style={{ animationDelay: `${activity.delay}s`, cursor: 'pointer' }}>

@@ -41,7 +41,7 @@ export default function ModulePage() {
 
   const renderContent = () => {
     switch(slug.toLowerCase().replace(/ /g, '-')) {
-      case 'budget-system':
+      case 'budget-planning':
         return (
           <div className="glass-card">
             <h3>💸 Trip Expenses Tracker</h3>
@@ -58,7 +58,7 @@ export default function ModulePage() {
             )}
           </div>
         );
-      case 'travel-events':
+      case 'trip-events':
         return (
           <div className="glass-card">
             <h3>📅 Interactive Calendar</h3>
@@ -71,7 +71,7 @@ export default function ModulePage() {
             <button onClick={handleAddEvent} className="btn btn-outline" style={{ marginTop: '1.5rem', width: '100%' }}>+ Add New Event</button>
           </div>
         );
-      case 'journal-feature':
+      case 'journal-system':
         return (
           <div className="glass-card">
             <h3>📖 My Travel Journal</h3>
@@ -79,7 +79,23 @@ export default function ModulePage() {
             <button onClick={() => setJournalSaved(true)} className="btn btn-primary" style={{ marginTop: '1rem', width: '100%' }}>{journalSaved ? '✔ Saved Successfully' : 'Save Entry'}</button>
           </div>
         );
-      case 'safety-center':
+      case 'travel-stories':
+        return (
+          <div className="glass-card">
+            <h3>📖 Community Stories</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
+              <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)' }}>
+                <strong>"My Amazing Trip to Japan"</strong> by Alex
+                <p style={{ marginTop: '0.5rem', color: 'var(--text-muted)' }}>The cherry blossoms were stunning, but the highlight was the food...</p>
+              </div>
+              <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--secondary)' }}>
+                <strong>"Backpacking across Europe"</strong> by Sarah
+                <p style={{ marginTop: '0.5rem', color: 'var(--text-muted)' }}>Using this AI assistant saved me hours of planning my train routes...</p>
+              </div>
+            </div>
+          </div>
+        );
+      case 'safety-information':
         return (
           <div className="glass-card" style={{ borderTop: '4px solid #ff4444' }}>
             <h3 style={{ color: '#ff4444' }}>🛡 Emergency Dashboard</h3>
@@ -93,7 +109,7 @@ export default function ModulePage() {
             </ul>
           </div>
         );
-      case 'currency-module':
+      case 'currency-support':
         return (
           <div className="glass-card">
             <h3>💱 Live Exchange Rates</h3>
@@ -107,7 +123,7 @@ export default function ModulePage() {
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '1rem' }}>Updated 2 mins ago via AI Market Analysis</p>
           </div>
         );
-      case 'ticket-manager':
+      case 'ticket-storage':
         return (
           <div className="glass-card" style={{ position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: 0, right: 0, background: 'var(--primary)', padding: '0.5rem 2rem', borderBottomLeftRadius: '12px', fontWeight: 'bold' }}>BOARDING PASS</div>
@@ -125,7 +141,7 @@ export default function ModulePage() {
             </div>
           </div>
         );
-      case 'documents-storage':
+      case 'document-management':
         return (
           <div className="glass-card">
             <h3>📁 Secure Vault</h3>
@@ -138,7 +154,7 @@ export default function ModulePage() {
             </div>
           </div>
         );
-      case 'country-insights':
+      case 'country-information':
         return (
           <div className="glass-card">
             <h3>🌍 Destination Info</h3>
@@ -150,7 +166,7 @@ export default function ModulePage() {
             </div>
           </div>
         );
-      case 'albums':
+      case 'travel-albums':
         return (
           <div className="glass-card">
             <h3>📷 Trip Gallery</h3>
