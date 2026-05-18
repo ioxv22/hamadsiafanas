@@ -1,34 +1,34 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { 
   Plane, 
-  Hotel, 
-  ShieldCheck, 
-  Sparkles, 
-  Zap, 
-  TrendingUp, 
-  Users, 
-  Layout, 
-  Clock, 
-  DollarSign, 
-  MapPin,
-  ArrowRight,
-  BrainCircuit,
-  Settings,
+  Hotel,
+  DollarSign,
   Activity,
-  Award,
-  Search
+  BrainCircuit,
+  Globe,
+  Calendar,
+  Star,
+  GraduationCap,
+  CheckCircle,
+  Cpu,
+  PlaneTakeoff,
+  Building,
+  Wallet,
+  ArrowRight,
+  Code,
+  Search,
+  Database,
+  PenTool,
+  Layout,
+  CheckSquare,
+  Presentation
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
-import ChatAssistant from '@/components/ChatAssistant';
-import ResultsView from '@/components/ResultsView';
 import styles from './page.module.css';
 
 export default function Home() {
-  const [results, setResults] = useState({ flights: [], hotels: [], packages: [] });
-  const scrollRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -51,9 +51,10 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <Navbar />
+      
       {/* Background Effects */}
       <div className={styles.particles}>
-        {[...Array(10)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <div key={i} className={styles.particle} style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -62,140 +63,55 @@ export default function Home() {
           }}></div>
         ))}
       </div>
-      <div className="glow-spot" style={{ top: '10%', left: '10%' }}></div>
+      <div className="glow-spot" style={{ top: '5%', left: '5%' }}></div>
       <div className="glow-spot" style={{ bottom: '10%', right: '10%', background: 'radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%)' }}></div>
-      
+
       {/* 1. Hero Section */}
       <section className={styles.heroSection}>
-        <div className={styles.heroBg} style={{ backgroundImage: 'url("/hero-bg.png")' }}></div>
         <div className={styles.heroOverlay}></div>
         <div className="container">
           <div className="reveal">
             <div className="badge animate-pulse-glow">Grade 11 AI Project</div>
             <h1>Smart Travel <br /><span className="text-gradient">AI Assistant</span></h1>
-            <p style={{ fontSize: '1.5rem', marginBottom: '2.5rem' }}>
-              AI-Powered Flights & Hotels Recommendation System
+            <p style={{ fontSize: '1.25rem', marginBottom: '2.5rem', maxWidth: '800px', lineHeight: '1.6' }}>
+              AI-powered system for flight and hotel recommendations for students and families.
             </p>
             <div className={styles.teamBadge}>
-              <Users size={18} />
-              <span>Hamad • Saif • Anas</span>
+              <span>Team: Hamad • Saif • Anas</span>
             </div>
             <div className={styles.heroBtns}>
-              <a href="#features" className="btn btn-primary">
-                Explore Features <ArrowRight size={20} />
+              <a href="#activities" className="btn btn-primary">
+                Explore Project <ArrowRight size={20} />
               </a>
-              <a href="#demo" className="btn btn-outline">
-                Try Demo
+              <a href="#activities" className="btn btn-outline">
+                View Activities
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Project Overview */}
-      <section id="overview">
+      {/* 2. Activities Section */}
+      <section id="activities">
         <div className="container">
           <div className="reveal">
-            <h2>Project Overview</h2>
-            <div className="grid-3">
-              <div className="glass-card">
-                <div className="icon-box"><Plane /></div>
-                <h3>Intelligent Flights</h3>
-                <p>Real-time comparison and intelligent sorting based on your specific needs.</p>
-              </div>
-              <div className="glass-card">
-                <div className="icon-box"><Hotel /></div>
-                <h3>Smart Hotels</h3>
-                <p>Personalized hotel recommendations powered by deep learning preferences.</p>
-              </div>
-              <div className="glass-card">
-                <div className="icon-box"><BrainCircuit /></div>
-                <h3>AI Logic</h3>
-                <p>Sophisticated algorithms that find the perfect balance between cost and comfort.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Problem Section */}
-      <section className={styles.problemSection} id="problem">
-        <div className="container">
-          <div className="reveal">
-            <h2 className="text-center">The Challenge</h2>
-            <div className="grid-3">
-              <div className={`${styles.problemCard} glass-card`}>
-                <div className={styles.problemIcon}>1</div>
-                <h3>Information Overload</h3>
-                <p>Thousands of options make it impossible to choose manually without stress.</p>
-              </div>
-              <div className={`${styles.problemCard} glass-card`}>
-                <div className={styles.problemIcon}>2</div>
-                <h3>Complex Decisions</h3>
-                <p>Comparing layovers, baggage rules, and ratings across platforms is exhausting.</p>
-              </div>
-              <div className={`${styles.problemCard} glass-card`}>
-                <div className={styles.problemIcon}>3</div>
-                <h3>Lack of Guidance</h3>
-                <p>Most platforms just sell seats without understanding the student context.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. AI Solution Workflow */}
-      <section className={styles.workflowSection}>
-        <div className="container">
-          <div className="reveal">
-            <h2>How It Works</h2>
-            <div className={styles.workflowContainer}>
-              <div className={styles.workflowStep}>
-                <div className="glass-card">
-                  <div className="icon-box"><Settings /></div>
-                  <h4>User Input</h4>
-                  <p>Destination & Budget</p>
-                </div>
-              </div>
-              <div className={styles.workflowConnector}><ArrowRight size={32} /></div>
-              <div className={styles.workflowStep}>
-                <div className="glass-card" style={{ borderColor: 'var(--primary)' }}>
-                  <div className="icon-box" style={{ color: 'var(--accent)' }}><BrainCircuit /></div>
-                  <h4>AI Processing</h4>
-                  <p>Neural Ranking</p>
-                </div>
-              </div>
-              <div className={styles.workflowConnector}><ArrowRight size={32} /></div>
-              <div className={styles.workflowStep}>
-                <div className="glass-card">
-                  <div className="icon-box"><Award /></div>
-                  <h4>Smart Results</h4>
-                  <p>Optimized Plan</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Key Features */}
-      <section id="features">
-        <div className="container">
-          <div className="reveal">
-            <h2>Key Features</h2>
+            <h2>Activities / Modules</h2>
             <div className="grid-3">
               {[
-                { icon: <Sparkles />, title: 'AI Chat Assistant', text: 'Natural language trip planning.' },
-                { icon: <Activity />, title: 'Flight Comparison', text: 'Visual data for quick decisions.' },
-                { icon: <MapPin />, title: 'Hotel Recommendations', text: 'Proximity and rating analysis.' },
-                { icon: <Zap />, title: 'Package Deals', text: 'Bundled savings automatically found.' },
-                { icon: <DollarSign />, title: 'Student Budget', text: 'Optimized for limited spending.' },
-                { icon: <Clock />, title: 'Instant Booking', text: 'Simulated real-time execution.' },
-              ].map((f, i) => (
-                <div key={i} className="glass-card">
-                  <div className="icon-box">{f.icon}</div>
-                  <h3>{f.title}</h3>
-                  <p>{f.text}</p>
+                { icon: <DollarSign />, title: 'Flight Budget Calculator', desc: 'AI calculates affordable flights according to budget.', delay: 0 },
+                { icon: <Building />, title: 'Hotel Recommendation Engine', desc: 'Suggest hotels based on price, rating and location.', delay: 0.1 },
+                { icon: <Wallet />, title: 'Travel Budget Planner', desc: 'Estimate full trip expenses.', delay: 0.2 },
+                { icon: <Activity />, title: 'Flight Comparison System', desc: 'Compare airline prices and options.', delay: 0.3 },
+                { icon: <BrainCircuit />, title: 'AI Recommendation Model', desc: 'Generate personalized travel suggestions.', delay: 0.4 },
+                { icon: <Globe />, title: 'Destination Selection', desc: 'Recommend destinations based on preferences.', delay: 0.5 },
+                { icon: <Calendar />, title: 'Travel Schedule Planner', desc: 'Create trip timeline automatically.', delay: 0.6 },
+                { icon: <Star />, title: 'Hotel Rating Analyzer', desc: 'Analyze hotel reviews and ratings.', delay: 0.7 },
+                { icon: <GraduationCap />, title: 'Student Travel Mode', desc: 'Special recommendations for students.', delay: 0.8 },
+              ].map((activity, i) => (
+                <div key={i} className="glass-card" style={{ animationDelay: `${activity.delay}s` }}>
+                  <div className="icon-box">{activity.icon}</div>
+                  <h3>{activity.title}</h3>
+                  <p>{activity.desc}</p>
                 </div>
               ))}
             </div>
@@ -203,136 +119,105 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Live AI Demo */}
-      <section id="demo">
+      {/* 3. Project Process Timeline */}
+      <section id="timeline" className={styles.timelineSection}>
         <div className="container">
           <div className="reveal">
-            <h2>Experience the AI Demo</h2>
-            <p style={{ margin: '0 auto 3rem', textAlign: 'center' }}>
-              Chat with our smart assistant to get real-time recommendations.
-            </p>
-            <div className={styles.demoLayout}>
-              <div className={styles.chatSide}>
-                <ChatAssistant onSearch={setResults} />
-              </div>
-              <div className={styles.resultsSide}>
-                <ResultsView results={results} />
-                {results.flights.length === 0 && results.hotels.length === 0 && (
-                  <div className={styles.demoPlaceholder}>
-                    <Search size={48} />
-                    <p>Search for "Flights to London" or "Hotels in Dubai" in the chat to see results here.</p>
+            <h2>Project Process Timeline</h2>
+            <div className={styles.timeline}>
+              {[
+                { title: 'Problem Identification', icon: <Search /> },
+                { title: 'Research', icon: <Globe /> },
+                { title: 'Dataset Collection', icon: <Database /> },
+                { title: 'AI Design', icon: <BrainCircuit /> },
+                { title: 'Model Planning', icon: <Code /> },
+                { title: 'UI Design', icon: <Layout /> },
+                { title: 'Testing', icon: <CheckSquare /> },
+                { title: 'Final Presentation', icon: <Presentation /> },
+              ].map((step, i) => (
+                <div key={i} className={styles.timelineItem}>
+                  <div className={styles.timelineIcon}>{step.icon}</div>
+                  <div className={styles.timelineContent}>
+                    <h3>{step.title}</h3>
+                    <div className={styles.timelineDot}></div>
                   </div>
-                )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Team Section */}
+      <section id="team">
+        <div className="container">
+          <div className="reveal">
+            <h2>Meet The Team</h2>
+            <div className="grid-3">
+              <div className={`${styles.teamCard} glass-card`}>
+                <div className={styles.teamAvatar} style={{ backgroundImage: 'linear-gradient(135deg, var(--primary) 0%, var(--bg-navy) 100%)' }}>H</div>
+                <h3>Hamad</h3>
+                <p className={styles.role}>AI Development</p>
+              </div>
+              <div className={`${styles.teamCard} glass-card`}>
+                <div className={styles.teamAvatar} style={{ backgroundImage: 'linear-gradient(135deg, var(--secondary) 0%, var(--bg-navy) 100%)' }}>S</div>
+                <h3>Saif</h3>
+                <p className={styles.role}>Research & Data</p>
+              </div>
+              <div className={`${styles.teamCard} glass-card`}>
+                <div className={styles.teamAvatar} style={{ backgroundImage: 'linear-gradient(135deg, var(--accent) 0%, var(--bg-navy) 100%)' }}>A</div>
+                <h3>Anas</h3>
+                <p className={styles.role}>Presentation & Design</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. Hotels Recommendation Section */}
-      <section>
+      {/* 5. Statistics Section */}
+      <section id="statistics" className={styles.statsSection}>
         <div className="container">
           <div className="reveal">
-            <h2>Recommended Stays</h2>
-            <div className="grid-2">
-              <div className={styles.hotelCard}>
-                <div className={styles.hotelImg} style={{ backgroundImage: 'url("/hotel-1.png")' }}>
-                  <div className={styles.hotelRating}>4.8 ★</div>
+            <h2>Project Statistics</h2>
+            <div className={styles.statsGrid}>
+              {[
+                { icon: <CheckCircle size={32}/>, count: '9', label: 'Activities Completed' },
+                { icon: <Cpu size={32}/>, count: '5+', label: 'AI Modules' },
+                { icon: <PlaneTakeoff size={32}/>, count: '10k+', label: 'Flight Analyses' },
+                { icon: <Building size={32}/>, count: '5k+', label: 'Hotel Recommendations' },
+                { icon: <Wallet size={32}/>, count: '100+', label: 'Budget Plans' },
+              ].map((stat, i) => (
+                <div key={i} className={styles.statBox}>
+                  <div className={styles.statIcon}>{stat.icon}</div>
+                  <div className={styles.statCount}>{stat.count}</div>
+                  <div className={styles.statLabel}>{stat.label}</div>
                 </div>
-                <div className={styles.hotelContent}>
-                  <h3>Neo Tokyo Luxury</h3>
-                  <p><MapPin size={14} /> 200m from City Center</p>
-                  <div className={styles.amenities}>
-                    <span>WiFi</span> <span>AI Butler</span> <span>Pool</span>
-                  </div>
-                  <div className={styles.hotelFooter}>
-                    <span className={styles.price}>$240 / night</span>
-                    <button className="btn btn-primary" style={{ padding: '0.5rem 1rem' }}>View Details</button>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.hotelCard}>
-                <div className={styles.hotelImg} style={{ backgroundImage: 'url("/hotel-2.png")' }}>
-                  <div className={styles.hotelRating}>4.5 ★</div>
-                </div>
-                <div className={styles.hotelContent}>
-                  <h3>Eco Resort 2050</h3>
-                  <p><MapPin size={14} /> 1.2km from City Center</p>
-                  <div className={styles.amenities}>
-                    <span>Solar Power</span> <span>Spa</span> <span>Organic</span>
-                  </div>
-                  <div className={styles.hotelFooter}>
-                    <span className={styles.price}>$180 / night</span>
-                    <button className="btn btn-primary" style={{ padding: '0.5rem 1rem' }}>View Details</button>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* 8. Ethics & Safety */}
-      <section>
-        <div className="container">
-          <div className="reveal">
-            <h2>Ethics & Safety</h2>
-            <div className="grid-2">
-              <div className="glass-card">
-                <div className="icon-box"><ShieldCheck /></div>
-                <h3>Simulated Data Only</h3>
-                <p>This project uses synthetic data to demonstrate AI capabilities without compromising real user privacy.</p>
-              </div>
-              <div className="glass-card">
-                <div className="icon-box"><TrendingUp /></div>
-                <h3>UAE MOE Compliance</h3>
-                <p>Developed in strict adherence to the UAE Ministry of Education's AI Ethics guidelines for student projects.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Final Takeaways */}
-      <section>
-        <div className="container">
-          <div className="reveal">
-            <div className={styles.takeawayHero}>
-              <h2>The Future of Travel</h2>
-              <div className="grid-3" style={{ marginTop: '3rem' }}>
-                <div className={styles.takeawayCard}>
-                  <h4>Empowerment</h4>
-                  <p>AI gives users the tools to navigate complex global markets easily.</p>
-                </div>
-                <div className={styles.takeawayCard}>
-                  <h4>Simplicity</h4>
-                  <p>Turning hours of research into seconds of intelligent results.</p>
-                </div>
-                <div className={styles.takeawayCard}>
-                  <h4>Ethics</h4>
-                  <p>Built with transparency and user safety as core foundations.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Footer */}
+      {/* 6. Footer */}
       <footer className={styles.footer}>
         <div className="container">
           <div className={styles.footerContent}>
             <div>
-              <h3>Smart Travel AI</h3>
-              <p>Grade 11 AI Project • 2026</p>
+              <h3>Smart Travel AI Assistant</h3>
+              <p>Flights & Hotels Recommendation System</p>
+              <p>Grade 11 AI Project</p>
             </div>
             <div className={styles.footerTeam}>
-              <strong>Project Team:</strong>
+              <strong>Made by:</strong>
               <p>Hamad • Saif • Anas</p>
+              <div style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--primary)' }}>
+                <p>Owner: @ZecoAI 🟡</p>
+                <p>Channel: @VipCode3 ✅</p>
+              </div>
             </div>
           </div>
           <div className={styles.footerBottom}>
-            <p>© 2026 All Rights Reserved. Educational Demo.</p>
+            <p>© {new Date().getFullYear()} All Rights Reserved.</p>
           </div>
         </div>
       </footer>

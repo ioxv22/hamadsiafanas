@@ -24,80 +24,68 @@ export default function ChatAssistant({ onSearch }: { onSearch: (results: any) =
     }
   }, [messages, isTyping]);
 
+  const [conversationId, setConversationId] = useState<string | null>(null);
+
   const fetchAIResponse = async (userText: string) => {
     setIsTyping(true);
 
     const lower = userText.toLowerCase();
     let results: any = { flights: [], hotels: [], packages: [] };
 
-    // Check for travel keywords to update the UI results, 
-    // but we won't block the request if they are missing.
-    const travelKeywords = ['flight', 'hotel', 'travel', 'trip', 'booking', 'price', 'dubai', 'london', 'baggage', 'student', 'emirates', 'etihad', 'flydubai', 'stay', 'destination', 'package', 'طيران', 'فندق', 'سفر', 'حجز', 'سعر', 'دبي', 'لندن', 'حقيبة', 'باكيج'];
+    // Check for travel keywords to update the UI results
+    const travelKeywords = ['flight', 'hotel', 'travel', 'trip', 'booking', 'price', 'dubai', 'london', 'baggage', 'student', 'stay', 'destination', 'package', 'طيران', 'فندق', 'سفر', 'حجز'];
     const hasTravelKeywords = travelKeywords.some(kw => lower.includes(kw));
 
     if (hasTravelKeywords) {
-      if (lower.includes('package') || lower.includes('combo') || lower.includes('باكيج')) {
+      if (lower.includes('package') || lower.includes('combo')) {
         results.packages = [
-          {
-            flight: mockData.flights[0],
-            hotel: mockData.hotels[0],
-            totalPrice: mockData.flights[0].price + (mockData.hotels[0].pricePerNight * 3),
-            stayDuration: 3
-          },
-          {
-            flight: mockData.flights[1],
-            hotel: mockData.hotels[1],
-            totalPrice: mockData.flights[1].price + (mockData.hotels[1].pricePerNight * 3),
-            stayDuration: 3
-          }
+          { flight: mockData.flights?.[0], hotel: mockData.hotels?.[0], totalPrice: 1200, stayDuration: 3 }
         ];
       } else if (lower.includes('flight') || lower.includes('طيران')) {
-        results.flights = mockData.flights;
+        results.flights = mockData.flights || [];
       } else if (lower.includes('hotel') || lower.includes('فندق')) {
-        results.hotels = mockData.hotels;
+        results.hotels = mockData.hotels || [];
       }
       onSearch(results);
     }
 
     try {
-      // Call GitHub Models API (GPT-4o)
-      const apiKey = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+      const payload: any = {
+        model: "1", // DeepSeek V3.2
+        message: userText
+      };
       
-      const response = await fetch("https://models.inference.ai.azure.com/chat/completions", {
+      if (conversationId) {
+        payload.conversation_id = conversationId;
+      }
+
+      const response = await fetch("https://zecora0.serv00.net/deepseek.php", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${apiKey}`,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          "model": "gpt-4o",
-          "messages": [
-            {
-              "role": "system",
-              "content": "You are a professional AI Travel Expert for 'Smart Travel'. YOUR CORE RULES: 1. Always provide REALISTIC travel costs and calculate totals based on passengers and duration. 2. Use real destinations like London, Paris, Tokyo, Istanbul. 3. Be precise with currency (AED). 4. Help families optimize their budget. 5. If asked about baggage or accessibility, refer to standard airline practices (Emirates, Etihad, etc.). 6. Keep your tone professional, helpful, and high-end."
-            },
-            {
-              "role": "user",
-              "content": userText
-            }
-          ]
-        })
+        body: JSON.stringify(payload)
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || 'API Error');
+        throw new Error('API Error');
       }
       
       const data = await response.json();
-      const aiText = data.choices[0].message.content;
       
-      setMessages(prev => [...prev, { id: Date.now(), text: aiText, sender: 'ai' }]);
+      if (data.success) {
+        setConversationId(data.conversation_id);
+        // Replace <br> or markdown with proper newlines if needed, but we can just use the text.
+        // If data.html exists, one could render it, but for safety we use data.response.
+        setMessages(prev => [...prev, { id: Date.now(), text: data.response, sender: 'ai' }]);
+      } else {
+        throw new Error("Failed to get response");
+      }
     } catch (error: any) {
       console.error("AI Fetch Error:", error);
       setMessages(prev => [...prev, { 
         id: Date.now(), 
-        text: `Error: ${error.message || "Connection failed."} - Reverting to Kilwa safe mode.`, 
+        text: `Error connecting to DeepSeek AI. Please try again.`, 
         sender: 'ai' 
       }]);
     } finally {
