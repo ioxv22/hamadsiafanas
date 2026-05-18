@@ -25,7 +25,12 @@ import {
   PenTool,
   Layout,
   CheckSquare,
-  Presentation
+  Presentation,
+  Shield,
+  Ticket,
+  FileText,
+  Camera,
+  Map
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import styles from './page.module.css';
@@ -90,6 +95,9 @@ export default function Home() {
               <a href="#activities" className="btn btn-outline">
                 View Activities
               </a>
+              <a href="/presentation" className="btn btn-outline" style={{ background: 'rgba(0,112,243,0.2)', borderColor: 'var(--primary)' }}>
+                <Presentation size={20} style={{ marginRight: '0.5rem' }} /> Presentation
+              </a>
             </div>
           </div>
         </div>
@@ -104,19 +112,20 @@ export default function Home() {
               <a href="/flights" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="glass-card" style={{ animationDelay: `0s`, cursor: 'pointer' }}>
                   <div className="icon-box"><PlaneTakeoff /></div>
-                  <h3>Global Flight System</h3>
-                  <p>Search, compare, and book realistic flights.</p>
+                  <h3>Smart Planning</h3>
+                  <p>AI-assisted comprehensive travel planning system.</p>
                 </div>
               </a>
               {[
-                { icon: <Building />, title: 'Hotel Recommendation Engine', desc: 'Suggest hotels based on price, rating and location.', link: 'hotel-recommendation', delay: 0.1 },
-                { icon: <Wallet />, title: 'Travel Budget Planner', desc: 'Estimate full trip expenses.', link: 'budget-planner', delay: 0.2 },
-                { icon: <Activity />, title: 'Flight Comparison System', desc: 'Compare airline prices and options.', link: 'flight-comparison', delay: 0.3 },
-                { icon: <BrainCircuit />, title: 'AI Recommendation Model', desc: 'Generate personalized travel suggestions.', link: 'ai-recommendation', delay: 0.4 },
-                { icon: <Globe />, title: 'Destination Selection', desc: 'Recommend destinations based on preferences.', link: 'destination-selection', delay: 0.5 },
-                { icon: <Calendar />, title: 'Travel Schedule Planner', desc: 'Create trip timeline automatically.', link: 'schedule-planner', delay: 0.6 },
-                { icon: <Star />, title: 'Hotel Rating Analyzer', desc: 'Analyze hotel reviews and ratings.', link: 'rating-analyzer', delay: 0.7 },
-                { icon: <GraduationCap />, title: 'Student Travel Mode', desc: 'Special recommendations for students.', link: 'student-travel-mode', delay: 0.8 },
+                { icon: <Wallet />, title: 'Budget System', desc: 'Track and organize full trip expenses.', link: 'budget-system', delay: 0.1 },
+                { icon: <Map />, title: 'Travel Events', desc: 'Discover and schedule activities.', link: 'travel-events', delay: 0.2 },
+                { icon: <PenTool />, title: 'Journal Feature', desc: 'Write and store travel memories.', link: 'journal-feature', delay: 0.3 },
+                { icon: <Shield />, title: 'Safety Center', desc: 'Access travel safety information.', link: 'safety-center', delay: 0.4 },
+                { icon: <DollarSign />, title: 'Currency Module', desc: 'Real-time currency exchange rates.', link: 'currency-module', delay: 0.5 },
+                { icon: <Ticket />, title: 'Ticket Manager', desc: 'Store and manage travel tickets.', link: 'ticket-manager', delay: 0.6 },
+                { icon: <FileText />, title: 'Documents Storage', desc: 'Securely store passports & visas.', link: 'documents-storage', delay: 0.7 },
+                { icon: <Globe />, title: 'Country Insights', desc: 'Detailed destination guides.', link: 'country-insights', delay: 0.8 },
+                { icon: <Camera />, title: 'Albums', desc: 'Organize your travel photos.', link: 'albums', delay: 0.9 },
               ].map((activity, i) => (
                 <a key={i} href={`/modules/${activity.link}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <div className="glass-card" style={{ animationDelay: `${activity.delay}s`, cursor: 'pointer' }}>
