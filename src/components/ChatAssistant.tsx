@@ -37,12 +37,20 @@ export default function ChatAssistant({ onSearch }: { onSearch: (results: any) =
     const hasTravelKeywords = travelKeywords.some(kw => lower.includes(kw));
 
     if (hasTravelKeywords) {
-      // Very basic extraction of destination (e.g. "flight to ad", "to paris")
-      const destinationMatch = lower.match(/(?:to|in|visit|إلى)\s+([a-zA-Z\u0600-\u06FF\s]+)/);
-      let destinationCode = 'London (LHR)';
+      // Dynamic extraction of destination (English & Arabic)
+      const destinationMatch = lower.match(/(?:to|in|visit|إلى|الي|في|لـ|نحو)\s+([a-zA-Z\u0600-\u06FF]+)/);
+      let destinationCode = 'Anywhere';
+      
       if (destinationMatch && destinationMatch[1]) {
         const dest = destinationMatch[1].trim();
-        destinationCode = dest.length <= 3 ? dest.toUpperCase() : dest.charAt(0).toUpperCase() + dest.slice(1);
+        destinationCode = dest.length <= 3 && !/[\u0600-\u06FF]/.test(dest) ? dest.toUpperCase() : dest.charAt(0).toUpperCase() + dest.slice(1);
+      } else {
+        // Fallback: take the last word if it's not a generic keyword
+        const words = lower.replace(/[.?!,]/g, '').split(' ');
+        const lastWord = words[words.length - 1];
+        if (lastWord && lastWord.length > 2 && !travelKeywords.includes(lastWord)) {
+          destinationCode = lastWord.charAt(0).toUpperCase() + lastWord.slice(1);
+        }
       }
 
       const flightsData = (mockData.flights || []).map((f: any) => ({
