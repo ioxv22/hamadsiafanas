@@ -105,20 +105,22 @@ export default function Home() {
                 </div>
               </a>
               {[
-                { icon: <Building />, title: 'Hotel Recommendation Engine', desc: 'Suggest hotels based on price, rating and location.', delay: 0.1 },
-                { icon: <Wallet />, title: 'Travel Budget Planner', desc: 'Estimate full trip expenses.', delay: 0.2 },
-                { icon: <Activity />, title: 'Flight Comparison System', desc: 'Compare airline prices and options.', delay: 0.3 },
-                { icon: <BrainCircuit />, title: 'AI Recommendation Model', desc: 'Generate personalized travel suggestions.', delay: 0.4 },
-                { icon: <Globe />, title: 'Destination Selection', desc: 'Recommend destinations based on preferences.', delay: 0.5 },
-                { icon: <Calendar />, title: 'Travel Schedule Planner', desc: 'Create trip timeline automatically.', delay: 0.6 },
-                { icon: <Star />, title: 'Hotel Rating Analyzer', desc: 'Analyze hotel reviews and ratings.', delay: 0.7 },
-                { icon: <GraduationCap />, title: 'Student Travel Mode', desc: 'Special recommendations for students.', delay: 0.8 },
+                { icon: <Building />, title: 'Hotel Recommendation Engine', desc: 'Suggest hotels based on price, rating and location.', link: 'hotel-recommendation', delay: 0.1 },
+                { icon: <Wallet />, title: 'Travel Budget Planner', desc: 'Estimate full trip expenses.', link: 'budget-planner', delay: 0.2 },
+                { icon: <Activity />, title: 'Flight Comparison System', desc: 'Compare airline prices and options.', link: 'flight-comparison', delay: 0.3 },
+                { icon: <BrainCircuit />, title: 'AI Recommendation Model', desc: 'Generate personalized travel suggestions.', link: 'ai-recommendation', delay: 0.4 },
+                { icon: <Globe />, title: 'Destination Selection', desc: 'Recommend destinations based on preferences.', link: 'destination-selection', delay: 0.5 },
+                { icon: <Calendar />, title: 'Travel Schedule Planner', desc: 'Create trip timeline automatically.', link: 'schedule-planner', delay: 0.6 },
+                { icon: <Star />, title: 'Hotel Rating Analyzer', desc: 'Analyze hotel reviews and ratings.', link: 'rating-analyzer', delay: 0.7 },
+                { icon: <GraduationCap />, title: 'Student Travel Mode', desc: 'Special recommendations for students.', link: 'student-travel-mode', delay: 0.8 },
               ].map((activity, i) => (
-                <div key={i} className="glass-card" style={{ animationDelay: `${activity.delay}s` }}>
-                  <div className="icon-box">{activity.icon}</div>
-                  <h3>{activity.title}</h3>
-                  <p>{activity.desc}</p>
-                </div>
+                <a key={i} href={`/modules/${activity.link}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <div className="glass-card" style={{ animationDelay: `${activity.delay}s`, cursor: 'pointer' }}>
+                    <div className="icon-box">{activity.icon}</div>
+                    <h3>{activity.title}</h3>
+                    <p>{activity.desc}</p>
+                  </div>
+                </a>
               ))}
             </div>
           </div>
@@ -132,22 +134,24 @@ export default function Home() {
             <h2>Project Process Timeline</h2>
             <div className={styles.timeline}>
               {[
-                { title: 'Problem Identification', icon: <Search /> },
-                { title: 'Research', icon: <Globe /> },
-                { title: 'Dataset Collection', icon: <Database /> },
-                { title: 'AI Design', icon: <BrainCircuit /> },
-                { title: 'Model Planning', icon: <Code /> },
-                { title: 'UI Design', icon: <Layout /> },
-                { title: 'Testing', icon: <CheckSquare /> },
-                { title: 'Final Presentation', icon: <Presentation /> },
+                { title: 'Problem Identification', icon: <Search />, link: 'problem-identification' },
+                { title: 'Research', icon: <Globe />, link: 'research' },
+                { title: 'Dataset Collection', icon: <Database />, link: 'dataset-collection' },
+                { title: 'AI Design', icon: <BrainCircuit />, link: 'ai-design' },
+                { title: 'Model Planning', icon: <Code />, link: 'model-planning' },
+                { title: 'UI Design', icon: <Layout />, link: 'ui-design' },
+                { title: 'Testing', icon: <CheckSquare />, link: 'testing' },
+                { title: 'Final Presentation', icon: <Presentation />, link: 'final-presentation' },
               ].map((step, i) => (
-                <div key={i} className={styles.timelineItem}>
-                  <div className={styles.timelineIcon}>{step.icon}</div>
-                  <div className={styles.timelineContent}>
-                    <h3>{step.title}</h3>
-                    <div className={styles.timelineDot}></div>
+                <a key={i} href={`/process/${step.link}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <div className={styles.timelineItem} style={{ cursor: 'pointer' }}>
+                    <div className={styles.timelineIcon}>{step.icon}</div>
+                    <div className={styles.timelineContent}>
+                      <h3>{step.title}</h3>
+                      <div className={styles.timelineDot}></div>
+                    </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
