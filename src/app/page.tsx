@@ -249,10 +249,6 @@ export default function Home() {
             <div className={styles.footerTeam}>
               <strong>Made by:</strong>
               <p>Hamad • Saif • Anas</p>
-              <div style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--primary)' }}>
-                <p>Owner: @ZecoAI 🟡</p>
-                <p>Channel: @VipCode3 ✅</p>
-              </div>
             </div>
           </div>
           <div className={styles.footerBottom}>

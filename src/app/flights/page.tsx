@@ -19,7 +19,7 @@ export default function FlightsPage() {
         { id: 3, airline: 'Qatar Airways', from: 'DOH', to: 'LHR', price: 1800, time: '06:00 AM - 11:15 AM', duration: '7h 15m', class: 'Economy' },
       ]);
       setLoading(false);
-    }, 2000);
+    }, 400); // 400ms instead of 2000ms for fast loading
   };
 
   return (
