@@ -121,12 +121,12 @@ export default function ModulePage() {
         return (
           <div className="glass-card">
             <h3>📷 Trip Gallery</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.5rem', marginTop: '1.5rem' }}>
-              <div style={{ aspectRatio: '1', background: 'linear-gradient(45deg, var(--primary), var(--bg-navy))', borderRadius: '8px' }}></div>
-              <div style={{ aspectRatio: '1', background: 'linear-gradient(45deg, var(--secondary), var(--bg-navy))', borderRadius: '8px' }}></div>
-              <div style={{ aspectRatio: '1', background: 'linear-gradient(45deg, var(--accent), var(--bg-navy))', borderRadius: '8px' }}></div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
+              <div style={{ aspectRatio: '1', backgroundImage: 'url(https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=500&q=80)', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '8px', boxShadow: '0 4px 15px rgba(0,0,0,0.3)' }}></div>
+              <div style={{ aspectRatio: '1', backgroundImage: 'url(https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=80)', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '8px', boxShadow: '0 4px 15px rgba(0,0,0,0.3)' }}></div>
+              <div style={{ aspectRatio: '1', backgroundImage: 'url(https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=500&q=80)', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '8px', boxShadow: '0 4px 15px rgba(0,0,0,0.3)' }}></div>
             </div>
-            <button className="btn btn-outline" style={{ marginTop: '1rem', width: '100%' }}>Upload Photos</button>
+            <button className="btn btn-outline" style={{ marginTop: '1.5rem', width: '100%' }}>Upload Photos</button>
           </div>
         );
       default:
