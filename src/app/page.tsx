@@ -97,8 +97,14 @@ export default function Home() {
           <div className="reveal">
             <h2>Activities / Modules</h2>
             <div className="grid-3">
+              <a href="/flights" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <div className="glass-card" style={{ animationDelay: `0s`, cursor: 'pointer' }}>
+                  <div className="icon-box"><PlaneTakeoff /></div>
+                  <h3>Global Flight System</h3>
+                  <p>Search, compare, and book realistic flights.</p>
+                </div>
+              </a>
               {[
-                { icon: <DollarSign />, title: 'Flight Budget Calculator', desc: 'AI calculates affordable flights according to budget.', delay: 0 },
                 { icon: <Building />, title: 'Hotel Recommendation Engine', desc: 'Suggest hotels based on price, rating and location.', delay: 0.1 },
                 { icon: <Wallet />, title: 'Travel Budget Planner', desc: 'Estimate full trip expenses.', delay: 0.2 },
                 { icon: <Activity />, title: 'Flight Comparison System', desc: 'Compare airline prices and options.', delay: 0.3 },

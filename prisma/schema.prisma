@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?      @unique
+  emailVerified DateTime?
+  image         String?
+  bookings      Booking[]
+  savedTrips    SavedTrip[]
+  budgets       Budget[]
+  history       History[]
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model Booking {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String   @db.ObjectId
+  user          User     @relation(fields: [userId], references: [id])
+  type          String   // "FLIGHT" or "HOTEL"
+  status        String   @default("CONFIRMED")
+  totalPrice    Float
+  passengers    Int      @default(1)
+  details       Json
+  tickets       Ticket[]
+  createdAt     DateTime @default(now())
+}
+
+model Ticket {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  bookingId     String   @db.ObjectId
+  booking       Booking  @relation(fields: [bookingId], references: [id])
+  passengerName String
+  seatNumber    String?
+  ticketUrl     String?  // URL to generated PDF
+  createdAt     DateTime @default(now())
+}
+
+model Hotel {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  country       String
+  city          String
+  stars         Int
+  pricePerNight Float
+  amenities     String[]
+  images        String[]
+  reviews       Int
+  rating        Float
+  type          String   // "Student", "Luxury", "Family"
+}
+
+model Budget {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String   @db.ObjectId
+  user          User     @relation(fields: [userId], references: [id])
+  destination   String
+  totalDays     Int
+  totalPeople   Int
+  budgetMode    String   // "Student", "Economy", "Standard", "Luxury"
+  breakdown     Json     // Flights, Hotels, Food, Activities, Transport, Taxes
+  totalCost     Float
+  createdAt     DateTime @default(now())
+}
+
+model SavedTrip {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String   @db.ObjectId
+  user          User     @relation(fields: [userId], references: [id])
+  destination   String
+  startDate     DateTime?
+  endDate       DateTime?
+  savedData     Json     // Flight/Hotel references
+  createdAt     DateTime @default(now())
+}
+
+model History {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String   @db.ObjectId
+  user          User     @relation(fields: [userId], references: [id])
+  actionType    String   // "SEARCH_FLIGHT", "SEARCH_HOTEL", "CHAT"
+  metadata      Json
+  createdAt     DateTime @default(now())
+}
