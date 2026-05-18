@@ -7,19 +7,27 @@ import styles from '../page.module.css';
 export default function FlightsPage() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<any[]>([]);
+  const [fromLocation, setFromLocation] = useState('DXB');
+  const [toLocation, setToLocation] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate real API fetch
+    
+    // Dynamic generation based on inputs
+    const dest = toLocation.trim() || 'LHR';
+    const origin = fromLocation.trim() || 'DXB';
+    const destCode = dest.length <= 3 ? dest.toUpperCase() : dest.charAt(0).toUpperCase() + dest.slice(1);
+    const originCode = origin.length <= 3 ? origin.toUpperCase() : origin.charAt(0).toUpperCase() + origin.slice(1);
+
     setTimeout(() => {
       setResults([
-        { id: 1, airline: 'Emirates', from: 'DXB', to: 'LHR', price: 2500, time: '08:00 AM - 12:30 PM', duration: '7h 30m', class: 'Economy' },
-        { id: 2, airline: 'Etihad', from: 'AUH', to: 'LHR', price: 2100, time: '10:00 AM - 02:45 PM', duration: '7h 45m', class: 'Economy' },
-        { id: 3, airline: 'Qatar Airways', from: 'DOH', to: 'LHR', price: 1800, time: '06:00 AM - 11:15 AM', duration: '7h 15m', class: 'Economy' },
+        { id: 1, airline: 'Emirates', from: originCode, to: destCode, price: 2500, time: '08:00 AM - 12:30 PM', duration: '7h 30m', class: 'Economy' },
+        { id: 2, airline: 'Etihad', from: originCode, to: destCode, price: 2100, time: '10:00 AM - 02:45 PM', duration: '7h 45m', class: 'Economy' },
+        { id: 3, airline: 'Qatar Airways', from: originCode, to: destCode, price: 1800, time: '06:00 AM - 11:15 AM', duration: '7h 15m', class: 'Economy' },
       ]);
       setLoading(false);
-    }, 400); // 400ms instead of 2000ms for fast loading
+    }, 400); 
   };
 
   return (
@@ -30,11 +38,11 @@ export default function FlightsPage() {
         <form onSubmit={handleSearch} className="glass-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr auto', gap: '1rem', alignItems: 'end', marginBottom: '3rem' }}>
           <div>
             <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>From</label>
-            <input type="text" placeholder="Origin City/Airport" required style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.2)', color: 'white' }} />
+            <input type="text" placeholder="Origin City/Airport" value={fromLocation} onChange={(e) => setFromLocation(e.target.value)} required style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.2)', color: 'white' }} />
           </div>
           <div>
             <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>To</label>
-            <input type="text" placeholder="Destination" required style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.2)', color: 'white' }} />
+            <input type="text" placeholder="Destination" value={toLocation} onChange={(e) => setToLocation(e.target.value)} required style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.2)', color: 'white' }} />
           </div>
           <div>
             <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>Date</label>
