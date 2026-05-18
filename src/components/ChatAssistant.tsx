@@ -55,12 +55,12 @@ export default function ChatAssistant({ onSearch }: { onSearch: (results: any) =
 
       const flightsData = (mockData.flights || []).map((f: any) => ({
         ...f,
-        to: destinationCode
+        destination: destinationCode
       }));
       
       const hotelsData = (mockData.hotels || []).map((h: any) => ({
         ...h,
-        city: destinationCode
+        name: `Luxury Hotel ${destinationCode}`
       }));
 
       if (lower.includes('package') || lower.includes('combo')) {
